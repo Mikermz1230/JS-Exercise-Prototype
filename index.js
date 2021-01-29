@@ -39,15 +39,35 @@ function Airplane(name) {
           + It should return a string with `name` and `age`. Example: "Mary, 50"
   */
   
- function Person() {
-    
+ function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.stomach = [];}
+  Person.prototype.eat = function(edible){
+    if(this.stomach.length < 10){
+      this.stomach.push(edible);
+    }
+   Person.prototype.poop = function(){
+    this.stomach = [];
   }
- 
- 
+  const personOne = new Person('shrek', 31);
+  const personTwo = new Person('donkey', 30);
+  const personThree = new Person('pussInBoots', 34);
+  
+  console.log(personOne.toString());
+  console.log(personTwo.toString());
+  console.log(personThree.toString());
+  
+  personThree.eat('tacos');
+  personThree.eat('pizza');
+  personThree.eat('ramen');
+  
+  console.log(personThree.stomach);
+  personThree.poop();
+  
+  console.log(personThree.stomach)
+}
 
-  
-  
-  
   
   /*
     TASK 2
@@ -63,10 +83,19 @@ function Airplane(name) {
           + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
   */
   
- function Car() {
-    
-  }
-  
+  car.prototype.fill = function(gallons) {   
+  this.tank = this.tank + gallons;  
+  };
+  const myCar = new car({
+    model: "Jaguar",
+    milesPerGallon: 18
+  });
+
+  console.log(myCar.tank);
+  myCar.fill(20);
+  console.log(myCar.tank);
+
+
   
   /*
     TASK 3
@@ -75,17 +104,20 @@ function Airplane(name) {
       - Besides the methods on Person.prototype, babies have the ability to `.play()`:
           + Should return a string "Playing with x", x being the favorite toy.
   */
- function Baby() {
-   
+ function Baby(name, age, favoriteToy) {
+  person.call(this, name, age)
+  this.favoriteToy = favoriteToy
   }
- 
+  
+  Baby.prototype.play = function(){
+    return 'playing with ${this.favoriteToy}'}
   
   /* 
     TASK 4
     In your own words explain the four principles for the "this" keyword below:
-    1. 
-    2. 
-    3. 
+    1. Global scope this keyword refers to a global object containging variables and functions that can be accesssed on the global scope
+    2. When followed by a . this refers to the object that is being accessed.
+    3. when using a function like .call or .apply this is passed as a parameter it refers to
     4. 
   */
   
